@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= user.name || "Resume" %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<%
+  const themes = {
+    classic: { primary: "text-black", secondary: "text-gray-700", accent: "text-blue-600", border: "border-gray-300", bg: "bg-gray-50" },
+    modern: { primary: "text-blue-900", secondary: "text-blue-600", accent: "text-blue-500", border: "border-blue-400", bg: "bg-blue-50" },
+    professional: { primary: "text-green-900", secondary: "text-green-700", accent: "text-green-600", border: "border-green-400", bg: "bg-green-50" },
+    creative: { primary: "text-purple-900", secondary: "text-purple-700", accent: "text-purple-600", border: "border-purple-400", bg: "bg-purple-50" },
+    elegant: { primary: "text-gray-800", secondary: "text-gray-600", accent: "text-gray-500", border: "border-gray-400", bg: "bg-gray-100" },
+    warm: { primary: "text-orange-900", secondary: "text-orange-700", accent: "text-orange-600", border: "border-orange-400", bg: "bg-orange-50" }
+  };
+  const theme = themes[colorScheme] || themes.classic;
+%>
+
+<body class="min-h-screen <%= theme.bg %> flex items-center justify-center p-6 <%= fontFamily %> <%= fontSize %>">
+  <div id="resume-card" class="bg-white <%= cardStyle %> p-6 w-full max-w-4xl border <%= theme.border %> text-xs leading-snug">
+    
+    <!-- Header -->
+    <header class="text-center border-b <%= theme.border %> pb-3 mb-4">
+      <h1 class="text-2xl font-bold <%= theme.primary %>"><%= user.name || "John Doe" %></h1>
+      <p class="text-sm font-medium mt-1 <%= theme.secondary %>"><%= user.profession || "Software Engineer" %></p>
+      <p class="text-gray-600 text-xs mt-1">
+        <%= user.city || "City" %> | <%= user.phone || "1234567890" %> | <%= user.email || "email@example.com" %>
+      </p>
+      <% if (user.linkedin) { %>
+        <a href="<%= user.linkedin.startsWith('http') ? user.linkedin : 'https://' + user.linkedin %>"
+           class="text-xs hover:underline mt-1 inline-block <%= theme.accent %>"
+           target="_blank" rel="noopener noreferrer">
+          LinkedIn
+        </a>
+      <% } %>
+    </header>
+
+    <!-- Professional Summary -->
+    <% if (user.professionalSummary) { %>
+      <section class="mb-4">
+        <h2 class="text-sm font-semibold mb-2 pb-1 border-b <%= theme.border %> <%= theme.primary %>">Professional Summary</h2>
+        <p class="text-gray-700 text-xs leading-snug"><%= user.professionalSummary %></p>
+      </section>
+    <% } %>
+
+    <!-- Skills -->
+    <% if (user.skills && user.skills.length > 0) { %>
+      <section class="mb-4">
+        <h2 class="text-sm font-semibold mb-2 pb-1 border-b <%= theme.border %> <%= theme.primary %>">Skills</h2>
+        <div class="flex flex-wrap gap-1">
+          <% user.skills.forEach(skill => { %>
+            <span class="px-2 py-0.5 rounded text-xs font-medium border <%= theme.border %> <%= theme.primary %> bg-white"><%= skill %></span>
+          <% }) %>
+        </div>
+      </section>
+    <% } %>
+
+    <!-- Languages -->
+    <% if (user.languagesSelected && user.languagesSelected.length > 0) { %>
+      <section class="mb-4">
+        <h2 class="text-sm font-semibold mb-2 pb-1 border-b <%= theme.border %> <%= theme.primary %>">Languages</h2>
+        <div class="flex flex-wrap gap-1">
+          <% user.languagesSelected.forEach(lang => { %>
+            <span class="px-2 py-0.5 rounded text-xs font-medium border <%= theme.border %> <%= theme.primary %> bg-white"><%= lang %></span>
+          <% }) %>
+        </div>
+      </section>
+    <% } %>
+
+    <!-- Projects -->
+    <% if (user.project && user.project.length > 0) { %>
+      <section class="mb-4">
+        <h2 class="text-sm font-semibold mb-2 pb-1 border-b <%= theme.border %> <%= theme.primary %>">Projects</h2>
+        <% user.project.forEach(proj => { %>
+          <div class="mb-2">
+            <div class="flex justify-between items-center">
+              <h3 class="text-sm font-semibold <%= theme.secondary %>"><%= proj.title %></h3>
+              <% if (proj.link) { %>
+                <a href="<%= proj.link.startsWith('http') ? proj.link : 'https://' + proj.link %>"
+                   target="_blank" rel="noopener noreferrer"
+                   class="text-xs hover:underline <%= theme.accent %>">
+                  View
+                </a>
+              <% } %>
+            </div>
+            <p class="text-xs text-gray-700 italic mb-1"><strong>Tech:</strong> <%= proj.techstack %></p>
+            <ul class="list-disc list-inside text-xs text-gray-800 space-y-0.5">
+              <% proj.points.forEach(point => { %>
+                <li><%= point %></li>
+              <% }) %>
+            </ul>
+          </div>
+        <% }) %>
+      </section>
+    <% } %>
+
+    <!-- Experience -->
+    <% if (user.experience && user.experience.length > 0) { %>
+      <section class="mb-4">
+        <h2 class="text-sm font-semibold mb-2 pb-1 border-b <%= theme.border %> <%= theme.primary %>">Experience</h2>
+        <% user.experience.forEach(exp => { %>
+          <div class="mb-2">
+            <h3 class="text-sm font-semibold <%= theme.secondary %>"><%= exp.companyName %></h3>
+            <p class="text-xs text-gray-700 font-medium"><%= exp.experienceType %> | <%= exp.companyLocation %></p>
+            <p class="text-[10px] text-gray-600 mb-1"><%= exp.startYear %> - <%= exp.endYear %></p>
+            <ul class="list-disc list-inside text-xs text-gray-800 space-y-0.5">
+              <% exp.points.forEach(point => { %>
+                <li><%= point %></li>
+              <% }) %>
+            </ul>
+          </div>
+        <% }) %>
+      </section>
+    <% } %>
+
+    <!-- Education -->
+    <% if (user.education && user.education.length > 0) { %>
+      <section class="mb-2">
+        <h2 class="text-sm font-semibold mb-2 pb-1 border-b <%= theme.border %> <%= theme.primary %>">Education</h2>
+        <% user.education.forEach(edu => { %>
+          <div class="mb-2">
+            <h3 class="text-sm font-semibold <%= theme.secondary %>"><%= edu.institution %></h3>
+            <p class="text-xs text-gray-700"><%= edu.degree %> in <%= edu.fieldofstudy %></p>
+            <p class="text-[10px] text-gray-600"><%= edu.startYear %> - <%= edu.endYear %></p>
+            <% if (edu.overallCGPA) { %>
+              <p class="text-[10px] text-gray-600"><strong>CGPA:</strong> <%= edu.overallCGPA %></p>
+            <% } %>
+          </div>
+        <% }) %>
+      </section>
+    <% } %>
+  </div>
+</body>
+</html>
