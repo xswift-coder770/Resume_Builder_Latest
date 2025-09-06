@@ -35,10 +35,12 @@ router.post("/download/:id", async (req, res) => {
       }
     );
 
-    // Generate PDF with Puppeteer
+    // ✅ Launch Puppeteer with Render-safe args
     const browser = await puppeteer.launch({
-      headless: "new", // newer puppeteer versions
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      headless: true, // or "new" depending on version
     });
+
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: "networkidle0" });
 
@@ -50,14 +52,19 @@ router.post("/download/:id", async (req, res) => {
 
     await browser.close();
 
+    // ✅ Proper headers
     res.set({
       "Content-Type": "application/pdf",
       "Content-Disposition": `attachment; filename="${user.name || "resume"}.pdf"`,
     });
+
     res.send(pdfBuffer);
   } catch (error) {
-    console.error("PDF generation error:", error);
-    res.status(500).send("Error generating PDF");
+     console.error("PDF generation error:", error.stack || error);
+    res.status(500).json({
+      error: "Error generating PDF",
+      details: error.message,
+    });
   }
 });
 

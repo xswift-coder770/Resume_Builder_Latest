@@ -1,13 +1,11 @@
+const API_URL = import.meta.env.VITE_API_URL;
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
-
 const Educationpg = () => {
   const navigate = useNavigate();
-
   const user_id = JSON.parse(localStorage.getItem("user_id"));
   const [data, setData] = useState({});
   const [educationEntries, setEducationEntries] = useState([
@@ -18,7 +16,7 @@ const Educationpg = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const res = await axios.get(`${API_BASE}/api/users/user/${user_id}`,{
+        const res = await axios.get(`${API_URL}/api/users/user/${user_id}`,{
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -56,7 +54,7 @@ const Educationpg = () => {
   const handleSubmit = async () => {
     const formdata = { email: data.email, password: data.password, educationEntries };
     try {
-      const response = await fetch(`${API_BASE}/api/users/education`, {
+      const response = await fetch(`${API_URL}/api/users/education`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}`,
         "Content-Type": "application/json" },

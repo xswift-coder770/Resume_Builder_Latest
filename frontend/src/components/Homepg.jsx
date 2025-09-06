@@ -1,19 +1,16 @@
 
 
 
+const API_URL = import.meta.env.VITE_API_URL;
 
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import BoyImage from '../../public/Resume.jpeg';
-
-
- const API_BASE = import.meta.env.VITE_API_BASE_URL;
+import { Link } from "react-router-dom"; 
 
 const Homepg = () => {
   const [user, setUser] = useState('login');
- 
-  
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [registerEmail, setRegisterEmail] = useState('');
@@ -30,7 +27,7 @@ const Homepg = () => {
   const data = location.state;
   const navigate = useNavigate();
   localStorage.setItem('user_id', JSON.stringify(data.user._id));
-  localStorage.getItem("token");
+  const token=localStorage.getItem("token");
 
   useEffect(() => setIsVisible(true), []);
 
@@ -50,7 +47,7 @@ const Homepg = () => {
     }
     const formdata = { reviewText, rating };
     try {
-      const response = await fetch(`${API_BASE}/api/reviews/reviewpg-homepg`, {
+      const response = await fetch(`${API_URL}/api/reviews/reviewpg-homepg`, {
         method: 'POST',
         headers: {Authorization: `Bearer ${token}`,
          'Content-Type': 'application/json' },
@@ -73,11 +70,12 @@ const Homepg = () => {
     try {
        // ✅ Get token from localStorage
 
-      const response = await fetch(`${API_BASE}/api/reviews/reviews`, {
+      const response = await fetch(`${API_URL}/api/reviews/reviews`, {
         method: "GET",
         headers: {
+          Authorization: `Bearer ${token}`,// ✅ Send token with request
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // ✅ Send token with request
+          
         },
       });
 
@@ -110,8 +108,8 @@ const Homepg = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6 items-center">
-            <a href="/ContactUs" className="hover:text-purple-600 font-medium">Contact</a>
-            <a href="/ContactUs" className="hover:text-purple-600 font-medium">About</a>
+             <Link to="/ContactUs" className="hover:text-purple-600 font-medium">Contact</Link>
+             <Link to="/ContactUs" className="hover:text-purple-600 font-medium">About</Link>
             <a href="/Resume.jpeg" className="hover:text-purple-600 font-medium">Template</a>
             <button
               onClick={handleLogout}

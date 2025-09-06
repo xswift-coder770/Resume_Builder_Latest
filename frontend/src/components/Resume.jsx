@@ -1,15 +1,15 @@
+const API_URL = import.meta.env.VITE_API_URL;
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 const Resume = () => {
   const [data, setData] = useState({});
-  
   const [selectedTheme, setSelectedTheme] = useState("classic");
   const user_id = JSON.parse(localStorage.getItem("user_id"));
    const token = localStorage.getItem("token");
 
- 
+  // Color themes
   const themes = {
     classic: {
       name: "Classic",
@@ -68,7 +68,7 @@ const Resume = () => {
     const fetchUserData = async () => {
       try {
         const res = await axios.get(
-          `${API_BASE}/api/users/user/${user_id}`,{
+          `${API_URL}/api/users/user/${user_id}`,{
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -105,13 +105,20 @@ const Resume = () => {
     setSelectedTheme(themeKey);
   };
 
- const handleDownloadPDF = async () => {
+const handleDownloadPDF = async () => {
   if (user_id && user_id !== "demo-user") {
     try {
+      const token = localStorage.getItem("token"); // or sessionStorage, depending on your auth setup
+
       const res = await axios.post(
-        `${API_BASE}/api/resume/download/${user_id}`,
-        { colorScheme: selectedTheme }, // pass theme here
-        { responseType: "blob" } // PDF comes as binary
+        `${API_URL}/api/resume/download/${user_id}`,
+        { colorScheme: selectedTheme }, // body
+        {
+          responseType: "blob", // PDF as binary
+          headers: {
+            Authorization: `Bearer ${token}`, // ✅ attach JWT
+          },
+        }
       );
 
       // Create a blob download link
@@ -131,6 +138,7 @@ const Resume = () => {
     window.print(); // fallback for demo
   }
 };
+
 
 
   return (
