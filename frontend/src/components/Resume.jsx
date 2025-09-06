@@ -3,6 +3,7 @@ import axios from "axios";
 
 const Resume = () => {
   const [data, setData] = useState({});
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
   const [selectedTheme, setSelectedTheme] = useState("classic");
   const user_id = JSON.parse(localStorage.getItem("user_id"));
    const token = localStorage.getItem("token");
@@ -66,7 +67,7 @@ const Resume = () => {
     const fetchUserData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/users/user/${user_id}`,{
+          `${API_BASE}/api/users/user/${user_id}`,{
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -107,7 +108,7 @@ const Resume = () => {
   if (user_id && user_id !== "demo-user") {
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/resume/download/${user_id}`,
+        `${API_BASE}/api/resume/download/${user_id}`,
         { colorScheme: selectedTheme }, // pass theme here
         { responseType: "blob" } // PDF comes as binary
       );

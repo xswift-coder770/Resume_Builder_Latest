@@ -2,6 +2,8 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
+ const API_BASE = import.meta.env.VITE_API_BASE_URL;
 import {
   User,
   Briefcase,
@@ -46,6 +48,7 @@ const InputField = React.memo(
 
 const Personalpg = () => {
   const navigate = useNavigate();
+ 
   const user_id = JSON.parse(localStorage.getItem("user_id"));
   const [data, setData] = useState({});
   const [name, setName] = useState("");
@@ -60,7 +63,7 @@ const Personalpg = () => {
     const fetchUserData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/users/user/${user_id}`,{
+          `${API_BASE}/api/users/user/${user_id}`,{
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -96,7 +99,7 @@ const Personalpg = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/users/personalpg-homepg",
+        "${API_BASE}/api/users/personalpg-homepg",
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}`,

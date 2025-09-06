@@ -7,8 +7,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import BoyImage from '../../public/Resume.jpeg';
 
+
+ const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 const Homepg = () => {
   const [user, setUser] = useState('login');
+ 
+  
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [registerEmail, setRegisterEmail] = useState('');
@@ -45,7 +50,7 @@ const Homepg = () => {
     }
     const formdata = { reviewText, rating };
     try {
-      const response = await fetch('http://localhost:5000/api/reviews/reviewpg-homepg', {
+      const response = await fetch('${API_BASE}/api/reviews/reviewpg-homepg', {
         method: 'POST',
         headers: {Authorization: `Bearer ${token}`,
          'Content-Type': 'application/json' },
@@ -68,7 +73,7 @@ const Homepg = () => {
     try {
        // ✅ Get token from localStorage
 
-      const response = await fetch("http://localhost:5000/api/reviews/reviews", {
+      const response = await fetch("${API_BASE}/api/reviews/reviews", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

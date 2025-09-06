@@ -13,8 +13,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 const Projectpg = () => {
   const navigate = useNavigate();
+
   const user_id = JSON.parse(localStorage.getItem("user_id"));
   const [data, setData] = useState({});
   const [projects, setProjects] = useState([]);
@@ -29,7 +32,7 @@ const Projectpg = () => {
     const fetchUserData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/users/user/${user_id}`,{
+          `${API_BASE}/api/users/user/${user_id}`,{
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -78,7 +81,7 @@ const Projectpg = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/users/projectpg-homepg",
+        "${API_BASE}/api/users/projectpg-homepg",
         {
           method: "POST",
           headers: {Authorization: `Bearer ${token}`,
