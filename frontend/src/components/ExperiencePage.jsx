@@ -123,7 +123,7 @@ const ExperiencePage = () => {
 
     try {
       const response = await fetch(
-        "${API_BASE}/api/users/experiencepg-homepg",
+        `${API_BASE}/api/users/experiencepg-homepg`,
         {
           method: "POST",
           headers: {Authorization: `Bearer ${token}`, "Content-Type": "application/json" },

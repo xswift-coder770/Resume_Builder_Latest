@@ -81,7 +81,7 @@ const Projectpg = () => {
 
     try {
       const response = await fetch(
-        "${API_BASE}/api/users/projectpg-homepg",
+        `${API_BASE}/api/users/projectpg-homepg`,
         {
           method: "POST",
           headers: {Authorization: `Bearer ${token}`,

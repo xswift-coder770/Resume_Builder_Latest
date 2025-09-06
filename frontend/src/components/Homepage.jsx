@@ -18,7 +18,7 @@ const Homepage = () => {
     const formData = { email: loginEmail, password: loginPassword };
 
     try {
-      const response = await fetch('${API_BASE}/api/auth/login', {
+      const response = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const Homepage = () => {
     const formData = { email: registerEmail, password: registerPassword };
 
     try {
-      const response = await fetch('${API_BASE}/api/auth/register', {
+      const response = await fetch(`${API_BASE}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

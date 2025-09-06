@@ -50,7 +50,7 @@ const Homepg = () => {
     }
     const formdata = { reviewText, rating };
     try {
-      const response = await fetch('${API_BASE}/api/reviews/reviewpg-homepg', {
+      const response = await fetch(`${API_BASE}/api/reviews/reviewpg-homepg`, {
         method: 'POST',
         headers: {Authorization: `Bearer ${token}`,
          'Content-Type': 'application/json' },
@@ -73,7 +73,7 @@ const Homepg = () => {
     try {
        // ✅ Get token from localStorage
 
-      const response = await fetch("${API_BASE}/api/reviews/reviews", {
+      const response = await fetch(`${API_BASE}/api/reviews/reviews`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

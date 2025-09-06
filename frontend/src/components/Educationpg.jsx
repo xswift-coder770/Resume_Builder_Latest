@@ -56,7 +56,7 @@ const Educationpg = () => {
   const handleSubmit = async () => {
     const formdata = { email: data.email, password: data.password, educationEntries };
     try {
-      const response = await fetch("${API_BASE}/api/users/education", {
+      const response = await fetch(`${API_BASE}/api/users/education`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}`,
         "Content-Type": "application/json" },

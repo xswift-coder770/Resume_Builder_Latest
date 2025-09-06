@@ -63,7 +63,7 @@ const Skillpg = () => {
   const projectsbtnhandler = async () => {
     const formdata3 = { email: data.email, password: data.password, skills, languagesSelected };
     try {
-      const response = await fetch('${API_BASE}/api/users/skillpg-homepg', {
+      const response = await fetch(`${API_BASE}/api/users/skillpg-homepg`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json' },

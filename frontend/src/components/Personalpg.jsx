@@ -99,7 +99,7 @@ const Personalpg = () => {
 
     try {
       const response = await fetch(
-        "${API_BASE}/api/users/personalpg-homepg",
+        `${API_BASE}/api/users/personalpg-homepg`,
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}`,
