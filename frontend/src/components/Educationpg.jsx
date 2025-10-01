@@ -249,14 +249,14 @@ const Educationpg = () => {
                   <div className="p-2 sm:p-4">
                     {/* Resume Header */}
                     <header className="text-center mb-4 sm:mb-6">
-                      <h1 className="text-xl sm:text-3xl font-bold">{data.name || "Mayank Jha"}</h1>
+                      <h1 className="text-xl sm:text-3xl font-bold">{data.name || "Gaurav Kumar Baraik"}</h1>
                       <p className="text-gray-600 text-sm sm:text-base">{data.profession || "Software Engineer"}</p>
                       <p className="text-gray-500 text-xs sm:text-sm">
-                        {data.city || "Ranchi"} | {data.phone || "8817010881"} | {data.email || "mayankjha@gmail.com"}
+                        {data.city || "Ranchi"} | {data.phone || "8817010881"} | {data.email || "gaurav@gmail.com"}
                       </p>
                       {data.linkedin && (
                         <a
-                          href={data.linkedin || "linkedin.com/mayankjha"}
+                          href={data.linkedin || "linkedin.com/gauravkumar"}
                           className="text-blue-600 text-xs sm:text-sm hover:underline"
                           target="_blank"
                           rel="noopener noreferrer"
