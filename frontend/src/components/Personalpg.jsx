@@ -272,18 +272,18 @@ const Personalpg = () => {
                   {/* Header */}
                   <header className="text-center mb-4 sm:mb-6">
                     <h1 className="text-2xl sm:text-3xl font-bold">
-                      {name || "Mayank Jha"}
+                      {name || "Gaurav Kumar Baraik"}
                     </h1>
                     <p className="text-gray-600">
                       {profession || "Software Engineer"}
                     </p>
                     <p className="text-gray-500 text-xs sm:text-sm">
                       {city || "Ranchi"} | {phone || "8817010881"} |{" "}
-                      {resumeformemail || "mayankjha@gmail.com"}
+                      {resumeformemail || "gauravkumar@gmail.com"}
                     </p>
                     {(data.linkedin || linkedin) && (
                       <a
-                        href={linkedin || "linkedin.com/mayankjha"}
+                        href={linkedin || "linkedin.com/gauravkumar"}
                         className="text-blue-600 text-xs sm:text-sm hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
