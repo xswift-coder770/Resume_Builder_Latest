@@ -47,7 +47,7 @@ exports.updateEducation = async (req, res) => {
   }
 };
 
-// ✅ Update Skills & Languages
+//  Update Skills & Languages
 exports.updateSkills = async (req, res) => {
   const { skills, languagesSelected } = req.body;
   console.log("Skills to add:", skills);
@@ -72,7 +72,7 @@ exports.updateSkills = async (req, res) => {
   }
 };
 
-// ✅ Update Projects
+//  Update Projects
 exports.updateProjects = async (req, res) => {
   const { project } = req.body;
 
@@ -103,7 +103,7 @@ exports.updateProjects = async (req, res) => {
   }
 };
 
-// ✅ Update Experience
+//  Update Experience
 exports.updateExperience = async (req, res) => {
   const { experience, professionalSummary } = req.body;
 
@@ -140,7 +140,7 @@ exports.updateExperience = async (req, res) => {
   }
 };
 
-// ✅ Add Education Entries (overwrite)
+//  Add Education Entries (overwrite)
 exports.addEducationEntries = async (req, res) => {
   const { educationEntries } = req.body;
 
@@ -171,7 +171,7 @@ exports.addEducationEntries = async (req, res) => {
   }
 };
 
-// ✅ Get User Info (self)
+// Get User Info (self)
 exports.getUserInfo = async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select("-password");

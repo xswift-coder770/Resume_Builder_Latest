@@ -1,9 +1,8 @@
+const API_URL = import.meta.env.VITE_API_URL;
 
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
- const API_BASE = import.meta.env.VITE_API_BASE_URL;
 import {
   User,
   Briefcase,
@@ -48,7 +47,6 @@ const InputField = React.memo(
 
 const Personalpg = () => {
   const navigate = useNavigate();
- 
   const user_id = JSON.parse(localStorage.getItem("user_id"));
   const [data, setData] = useState({});
   const [name, setName] = useState("");
@@ -63,7 +61,7 @@ const Personalpg = () => {
     const fetchUserData = async () => {
       try {
         const res = await axios.get(
-          `${API_BASE}/api/users/user/${user_id}`,{
+          `${API_URL}/api/users/user/${user_id}`,{
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -82,7 +80,7 @@ const Personalpg = () => {
       }
     };
     fetchUserData();
-  }, [user_id]);
+  }, [user_id]);  //useeffect me yaha par user_id hai to ye chnage hoga to useeffect ke andar ka pura change ho jaiga rerender ho jaiga 
 
   const personalpgformsubmithandler = async (e) => {
     e.preventDefault();
@@ -99,7 +97,7 @@ const Personalpg = () => {
 
     try {
       const response = await fetch(
-        `${API_BASE}/api/users/personalpg-homepg`,
+        `${API_URL}/api/users/personalpg-homepg`,
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}`,
@@ -129,22 +127,12 @@ const Personalpg = () => {
   };
 
   // Stable handlers with useCallback
-  const handleNameChange = useCallback((e) => setName(e.target.value), []);
-  const handleProfessionChange = useCallback(
-    (e) => setProfession(e.target.value),
-    []
-  );
-  const handleCityChange = useCallback((e) => setCity(e.target.value), []);
-  const handleEmailChange = useCallback(
-    (e) => setResumeFormEmail(e.target.value),
-    []
-  );
-  const handlePhoneChange = useCallback((e) => setPhone(e.target.value), []);
-  const handleLinkedinChange = useCallback(
-    (e) => setLinkedin(e.target.value),
-    []
-  );
-
+  const handleNameChange = (e) => setName(e.target.value);
+  const handleProfessionChange = (e) => setProfession(e.target.value);
+  const handleCityChange = (e) => setCity(e.target.value);
+  const handleEmailChange = (e) => setResumeFormEmail(e.target.value);
+  const handlePhoneChange = (e) => setPhone(e.target.value);
+  const handleLinkedinChange = (e) => setLinkedin(e.target.value);
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50">
       <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] min-h-screen">

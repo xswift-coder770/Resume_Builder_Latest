@@ -1,8 +1,7 @@
+const API_URL = import.meta.env.VITE_API_URL;
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 const Homepage = () => {
   const [user, setUser] = useState('login');
@@ -12,13 +11,12 @@ const Homepage = () => {
   const [registerPassword, setRegisterPassword] = useState('');
   const navigate = useNavigate();
 
-
   const loginuser = async (e) => {
     e.preventDefault();
     const formData = { email: loginEmail, password: loginPassword };
 
     try {
-      const response = await fetch(`${API_BASE}/api/auth/login`, {
+      const response = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +47,7 @@ const Homepage = () => {
     const formData = { email: registerEmail, password: registerPassword };
 
     try {
-      const response = await fetch(`${API_BASE}/api/auth/register`, {
+      const response = await fetch(`${API_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

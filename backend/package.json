@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "postinstall": "npx @sparticuz/chromium download-chromium || true"
   },
   "keywords": [],
   "author": "",
@@ -11,6 +13,7 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
+    "@sparticuz/chromium": "^121.0.0",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
@@ -19,6 +22,6 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.18.0",
-    "puppeteer": "^24.17.1"
+    "puppeteer-core": "^21.11.0"
   }
 }

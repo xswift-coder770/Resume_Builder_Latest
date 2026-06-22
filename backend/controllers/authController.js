@@ -25,7 +25,7 @@ exports.registerUser = async (req, res) => {
     }
 
     // Hash password before saving
-    const salt = await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(10); //10 BAR HASHING PERFORM KARTA HAI TAKI SIMILAR PASSWORD BHI HOTTO HASHING SE DIFF HO JAI 
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = await User.create({ email, password: hashedPassword });

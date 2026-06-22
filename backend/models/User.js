@@ -19,7 +19,7 @@ const projectSchema = new mongoose.Schema({
   title: { type: String, required: true },
   link: { type: String, required: true },
   techstack:{ type: String, required:true },
-  points: { type: [String], default: [] } 
+  points: { type: [String], default: [] }   
 });
 
 const experienceSchema = new mongoose.Schema({

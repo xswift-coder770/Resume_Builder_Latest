@@ -1,21 +1,13 @@
 
-
-
-
-
-
-
-
+ 
+const API_URL = import.meta.env.VITE_API_URL;
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-  const API_BASE = import.meta.env.VITE_API_BASE_URL;
-
 const ExperiencePage = () => {
   const navigate = useNavigate();
-
   const [data, setData] = useState({});
   const user_id = JSON.parse(localStorage.getItem("user_id"));
 
@@ -28,7 +20,7 @@ const ExperiencePage = () => {
     const fetchUserData = async () => {
       try {
         const res = await axios.get(
-          `${API_BASE}/api/users/user/${user_id}`,{
+          `${API_URL}/api/users/user/${user_id}`,{
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -123,7 +115,7 @@ const ExperiencePage = () => {
 
     try {
       const response = await fetch(
-        `${API_BASE}/api/users/experiencepg-homepg`,
+        `${API_URL}/api/users/experiencepg-homepg`,
         {
           method: "POST",
           headers: {Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
