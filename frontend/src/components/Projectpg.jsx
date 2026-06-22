@@ -305,14 +305,14 @@ const Projectpg = () => {
               <div className="h-full overflow-y-auto p-4 sm:p-6">
                 {/* Resume Content */}
       <header className="text-center mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold">{data.name || 'Mayank Jha'}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold">{data.name || 'Gaurav Kumar Baraik'}</h1>
         <p className="text-gray-600 text-sm sm:text-base">{data.profession || 'Software Engineer'}</p>
         <p className="text-gray-500 text-xs sm:text-sm">
-          {data.city || 'Ranchi'} | {data.phone || '8817010881'} | {data.resumeformemail || 'mayankjha@gmail.com'}
+          {data.city || 'Ranchi'} | {data.phone || '8817010881'} | {data.resumeformemail || 'gauravkumar@gmail.com'}
         </p>
         {data.linkedin && (
           <a
-            href={data.linkedin || 'linkedin.com/mayankjha'}
+            href={data.linkedin || 'linkedin.com/gauravkumar'}
             className="text-blue-600 text-xs sm:text-sm hover:underline block sm:inline-block mt-1"
             target="_blank"
             rel="noopener noreferrer"

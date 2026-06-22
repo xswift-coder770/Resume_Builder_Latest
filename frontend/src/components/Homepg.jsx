@@ -47,10 +47,17 @@ const Homepg = () => {
     }
     const formdata = { reviewText, rating };
     try {
+<<<<<<< HEAD
       const response = await fetch(`${API_URL}/api/reviews/reviewpg-homepg`, { 
         method: 'POST',                                       //method hai ye 
         headers: {Authorization: `Bearer ${token}`,         //header hai ye 
          'Content-Type': 'application/json' },              //acceptance hai ye matlab kiss form jaiga ye btata hai 
+=======
+      const response = await fetch(`${API_URL}/api/reviews/reviewpg-homepg`, {
+        method: 'POST',
+        headers: {Authorization: `Bearer ${token}`,
+         'Content-Type': 'application/json' },
+>>>>>>> 73afe9d56df5b9ad1afad677ae4123b98b021270
         body: JSON.stringify(formdata),
       });
       const responseData = await response.json();

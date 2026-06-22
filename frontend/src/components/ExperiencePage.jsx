@@ -1,5 +1,15 @@
 
+<<<<<<< HEAD
  
+=======
+
+
+
+
+
+
+
+>>>>>>> 73afe9d56df5b9ad1afad677ae4123b98b021270
 const API_URL = import.meta.env.VITE_API_URL;
 
 import React, { useState, useEffect } from "react";
@@ -407,14 +417,14 @@ const ExperiencePage = () => {
       
       {/* Resume Header */}
       <header className="text-center mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold">{data.name || 'Mayank Jha'}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold">{data.name || 'Gaurav Kumar Baraik'}</h1>
         <p className="text-gray-600 text-sm sm:text-base">{data.profession || 'Software Engineer'}</p>
         <p className="text-gray-500 text-xs sm:text-sm">
-          {data.city || 'Ranchi'} | {data.phone || '8817010881'} | {data.resumeformemail || 'mayankjha@gmail.com'}
+          {data.city || 'Ranchi'} | {data.phone || '8817010881'} | {data.resumeformemail || 'gauravkumar@gmail.com'}
         </p>
         {data.linkedin && (
           <a
-            href={data.linkedin || 'linkedin.com/mayankjha'}
+            href={data.linkedin || 'linkedin.com/gauravkumar'}
             className="text-blue-600 text-xs sm:text-sm hover:underline block sm:inline-block mt-1"
             target="_blank"
             rel="noopener noreferrer"

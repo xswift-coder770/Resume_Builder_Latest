@@ -114,6 +114,7 @@ router.post("/download/:id", async (req, res) => {
       }
     );
 
+<<<<<<< HEAD
     // ✅ Cloud-safe Chromium launch
    const browser = await puppeteer.launch({
   args: chromium.args,
@@ -121,6 +122,13 @@ router.post("/download/:id", async (req, res) => {
   executablePath: await chromium.executablePath(),
   headless: chromium.headless,
 });
+=======
+    // ✅ Launch Puppeteer with Render-safe args
+    const browser = await puppeteer.launch({
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      headless: true, // or "new" depending on version
+    });
+>>>>>>> 73afe9d56df5b9ad1afad677ae4123b98b021270
 
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: "networkidle0" });
@@ -133,6 +141,7 @@ router.post("/download/:id", async (req, res) => {
 
     await browser.close();
 
+    // ✅ Proper headers
     res.set({
       "Content-Type": "application/pdf",
       "Content-Disposition": `attachment; filename="${user.name || "resume"}.pdf"`,
@@ -140,7 +149,11 @@ router.post("/download/:id", async (req, res) => {
 
     res.send(pdfBuffer);
   } catch (error) {
+<<<<<<< HEAD
     console.error("PDF generation error:", error.stack || error);
+=======
+     console.error("PDF generation error:", error.stack || error);
+>>>>>>> 73afe9d56df5b9ad1afad677ae4123b98b021270
     res.status(500).json({
       error: "Error generating PDF",
       details: error.message,
