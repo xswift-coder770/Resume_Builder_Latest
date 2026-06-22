@@ -33,8 +33,8 @@ const Homepg = () => {
 
   const createresume = () => navigate('/Personalpg');
   const handleLogout = () => {
-    localStorage.removeItem("user_id"); // ✅ clear stored user_id
-    localStorage.removeItem("token"); // ✅ clear stored token
+    localStorage.removeItem("user_id"); //   clear stored user_id
+    localStorage.removeItem("token"); //  clear stored token
     navigate("/"); // redirect to homepage/login
   };
 
@@ -75,12 +75,12 @@ const Homepg = () => {
   useEffect(() => {
   const fetchReviews = async () => {
     try {
-       // ✅ Get token from localStorage
+       //   Get token from localStorage
 
       const response = await fetch(`${API_URL}/api/reviews/reviews`, {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${token}`,// ✅ Send token with request
+          Authorization: `Bearer ${token}`,//   Send token with request
           "Content-Type": "application/json",
           
         },
