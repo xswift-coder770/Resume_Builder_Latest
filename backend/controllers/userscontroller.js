@@ -1,6 +1,6 @@
 const User = require("../models/User");
 
-// ✅ Update Personal Information
+//  Update Personal Information
 exports.updatePersonalInfo = async (req, res) => {
   const { name, profession, city, resumeformemail, phone, linkedin } = req.body;
 
@@ -23,7 +23,7 @@ exports.updatePersonalInfo = async (req, res) => {
   }
 };
 
-// ✅ Update Education
+//   Update Education
 exports.updateEducation = async (req, res) => {
   const { education } = req.body;
 
