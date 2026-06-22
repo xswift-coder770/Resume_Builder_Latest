@@ -17,7 +17,7 @@ connectDB();
 
 const app = express();
 
-// ✅ CORS Middleware (updated)
+//   CORS Middleware (updated)
 app.use(
   cors({
     origin: [
